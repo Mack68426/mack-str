@@ -3,7 +3,6 @@
 #ifndef UUSTR_H
 #define UUSTR_H
 
-#include "uuruntime_new.h"
 #include <stddef.h>
 
 #define N_INITIAL_CAPACITY 5
@@ -25,8 +24,6 @@ struct __uustr
 	const char* (*cstr)(uustr *);
 	uustr* (*ctor)(void *, ...);
 	void (*dtor)(uustr *);
-
-
 } ;
 
 extern uustr* $uustr$(void *, ...);

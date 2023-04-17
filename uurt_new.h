@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef UURUNTIME_NEW_H
-#define UURUNTIME_NEW_H
+#ifndef UURT_NEW_H
+#define UURT_NEW_H
 
 #include <stddef.h>
 #include <stdlib.h>
@@ -17,10 +17,11 @@
 #define new(TYPE, ...) TYPE ## _construct(malloc(sizeof(TYPE)), ## __VA_ARGS__)
 #define delete(TYPE, ptr) do { TYPE ## _destruct(ptr); free(ptr); } while(0)
 
-// conbined ideas 
-#define $new(TYPE, ...) $ ## TYPE ## $(malloc(sizeof(TYPE)), ## __VA_ARGS__)
+// conbined ideas
+
+#define $new(TYPE, args...) $ ## TYPE ## $(malloc(sizeof(TYPE)), ## args)
 #define $delete(TYPE, ptr) do { d$ ## TYPE ## $(ptr); free(ptr); } while(0)
-#define printfit(T, format, ...) T ## _print(format, ## __VA_ARGS__)
+#define printfit(T, format, args...) T ## _print(format, ## args)
 
 
 #endif

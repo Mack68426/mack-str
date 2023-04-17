@@ -6,7 +6,7 @@
 #include <string.h>
 
 static char* OutputStream = NULL;
-static uustr* uustr_constructor(void *, va_list);
+static uustr* uustr_construct(void *, va_list);
 
 static size_t uustr_len(uustr *);
 static void uustr_appendc(uustr * , const char);
@@ -17,17 +17,17 @@ static const char* uustr_cstr(uustr *);
 static int vasprintf(char** buffer, const char* format, va_list ap);
 
 // constructor and destructor
-uustr* uustr_constructor(void* _Self, va_list ap)
+uustr* uustr_construct(void* _Self, va_list ap)
 {
 
-    // ���w�ѼƳB�z
+    // ???w???B?z
     size_t args_len = vsnprintf(NULL, 0, "%s", ap);
 
     OutputStream = (char* )malloc(++args_len * sizeof(char));
 
     vsnprintf(OutputStream, args_len, "%s", ap);
 
-    // �إ߷s��string
+    // ???s??string
 	uustr* self = (uustr*)_Self;
     
     self->_length = 0;
@@ -60,7 +60,7 @@ uustr* $uustr$(void* addr, ...)
 
     va_end(arglist);
 
-    return uustr_constructor(addr, arglist);
+    return uustr_construct(addr, arglist);
 }
 
 void d$uustr$(uustr* _Self)
@@ -76,9 +76,11 @@ size_t uustr_len(uustr * Self)
 
 void uustr_appendc(uustr* _Self, const char ch)
 {
+    if (!ch) return;
+    
     if (_Self->_length + 1 > _Self->_capacity)
     {
-        _Self->_capacity *= 2; // convension �O�⭿
+        _Self->_capacity *= 2; // convension ?O??
 
         // _Self->_str = realloc(_Self->_str, _Self->_capacity * sizeof(char));
         _Self->_str = (char*)realloc(_Self->_str, _Self->_capacity * sizeof(char));
@@ -89,7 +91,9 @@ void uustr_appendc(uustr* _Self, const char ch)
 }
 
 void uustr_appends(uustr* _Self, const char* string)
-{
+{   
+    if (!string) return;
+
     while (_Self->_str[0] != '\0')
     {
         _Self->appendc(_Self, *string);
@@ -100,15 +104,15 @@ void uustr_appends(uustr* _Self, const char* string)
 
 const char* uustr_cstr(uustr* _Self)
 {
-    return _Self->_str;
+    return _Self?_Self->_str:"";
 }
 
 
 // support functions
 int vasprintf(char** buffer, const char* format, va_list ap)
 {
-    // vsnprintf ���Nva_list�������e�g�D�r�ꤤ�A�åB����r�����
-    // �Ĥ@���� NULL �u�O���F�n��r����צӤ��O���F�g�J
+    // vsnprintf ???Nva_list???????e?g?D?r???A??B????r?????
+    // ??@???? NULL ?u?O???F?n??r????????O???F?g?J
 
     int length = vsnprintf(NULL, 0, format, ap);
     // char* str = allocate(char, str, sizeof(char) * length + 1);
