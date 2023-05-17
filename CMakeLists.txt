@@ -31,7 +31,7 @@ target_include_directories(
 ################################
 add_executable(
     mack_floss
-    main.c
+    mack_floss/src/main.c
 )
 
 ###############################
