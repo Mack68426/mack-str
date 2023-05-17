@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef UURT_NEW_H
-#define UURT_NEW_H
+#ifndef MCRT_NEW_H
+#define MCRT_NEW_H
 
 #include <stddef.h>
 #include <stdlib.h>

@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef UUSTR_H
-#define UUSTR_H
+#ifndef MCFSTR_H
+#define MCFSTR_H
 
 #include <stddef.h>
 
