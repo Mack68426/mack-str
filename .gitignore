@@ -1,3 +1,4 @@
 .*
 !.gitignore
 /build
+/**/mcrt_new.h

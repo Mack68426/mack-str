@@ -10,7 +10,7 @@
         (type *)((char *)__mptr - offsetof(type, member));	\
     })
 
-#define new(TYPE, args...) TYPE ## _construct(malloc(sizeof(TYPE)), ## args)
+#define new(TYPE, ...) TYPE ## _construct(malloc(sizeof(TYPE)), ## __VA_ARGS__)
 
 
 #define delete(TYPE, ptr) do		\
