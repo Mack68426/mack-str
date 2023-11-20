@@ -11,6 +11,13 @@ target_include_directories(
         include
 )
 
+add_executable(
+    mackstrtests
+    tests/main.c
+)
+
+
+
 include(GNUInstallDirs)
 install(
     DIRECTORY include/mackstr

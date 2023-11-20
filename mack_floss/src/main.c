@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <mackstr/base.h>
-#include <mackstr/mcstr.h>
+#include <mackstr/mackstr.h>
 
 // 待處理
 // stackdump

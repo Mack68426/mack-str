@@ -1,12 +1,12 @@
-#include <mackstr/mcstr.h>
+#include <mackstr/mackstr.h>
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include <string.h>
 
-static char* OutputStream = NULL;
-static uustr* uustr_construct(void *, va_list);
+static char *OutputStream = NULL;
+static uustr *uustr_construct(void *, va_list);
 
 static size_t uustr_len(uustr *);
 static void uustr_appendc(uustr * , const char);
@@ -14,16 +14,16 @@ static void uustr_appends(uustr *, const char *);
 static const char* uustr_cstr(uustr *);
 
 
-static int vasprintf(char** buffer, const char* format, va_list ap);
+static int vasprintf(char** buffer, const char * format, va_list ap);
 
 // constructor and destructor
-uustr* uustr_construct(void* _Self, va_list ap)
+uustr* uustr_construct(void *_Self, va_list ap)
 {
 
     // ???w???B?z
     size_t args_len = vsnprintf(NULL, 0, "%s", ap);
 
-    OutputStream = (char* )malloc(++args_len * sizeof(char));
+    OutputStream = (char *)malloc(++args_len * sizeof(char));
 
     vsnprintf(OutputStream, args_len, "%s", ap);
 

@@ -8,7 +8,6 @@ target_link_libraries(
     mackstr
 )
 
-include(GNUInstallDirs)
 
 install(
     TARGETS mack_floss
